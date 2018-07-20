@@ -13,7 +13,16 @@ outer(num="abc")
 
 
 # If however we are using kwargs to dispatch on types we have to do something different
-from typing import List
+from typing import List, overload
+
+
+@overload
+def outer2(num: float) -> None:
+    ...
+
+@overload
+def outer2(num: List[float]) -> None:
+    ...
 
 def outer2(**kwargs):
     if isinstance(kwargs['num'], list):
